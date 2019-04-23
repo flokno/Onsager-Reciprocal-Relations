@@ -1,0 +1,203 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, hyperref, cancel}
+
+\renewcommand{\d}{\text{d}}
+\newcommand\mean[1]{\mathop{\overline{#1}}}
+\renewcommand{\c}{\cancel{c}}
+
+\begin{document}
+\noindent
+Florian Knoop  \hfill \today 
+\\[2em]
+\begin{center}
+	{\Large Onsager Reciprocal Relations}
+\end{center}
+
+\noindent
+
+\section*{Literature}
+\begin{itemize}
+    \item[I)] Lars~Onsager, \emph{Reciprocal Relations in Irreversible Processes. I.}, \\
+    \emph{Phys. Rev.} \textbf{37}, 405 (1931)
+    \item[II)] Lars~Onsager, \emph{Reciprocal Relations in Irreversible Processes. II.}, \\
+    \emph{Phys. Rev.} \textbf{38}, 2265 (1931)
+\end{itemize}
+
+\section*{Definitions}
+\begin{align*}
+    X_i &= \text{generalized force} \\
+    R_i &= \text{generalized resistance} \\
+    L_i &= \text{generalized conductance } (\equiv R_i^{-1}) \\
+    J_i &= \text{generalized current ($i=1$: electric, $i=2$: heat)} \\
+    \alpha_i &= \text{displacement of (heat) energy distribution} %\int \epsilon \, x_i ~\d V
+\end{align*}
+
+\section{Short Summary of I)}
+Onsager starts from W.~Thomson's work on the \emph{thermoelectric effect}~\footnote{W.~Thomson (Lord Kelvin), Proc. Roy. Soc. Edinburgh 1854, p.~123; Collected Papers~I, pp.~236-41}, in which he presents a \emph{reciprocal relation}
+between the elements of a joint resistivity tensor $R_{ij}$ that relates the electrical and heat currents~$J_{1/2}$ with their respective forces~$X_{1/2}$:
+\begin{align}
+    \begin{pmatrix} 
+        X_1 \\ X_2 
+    \end{pmatrix}
+    =
+    \begin{pmatrix} 
+        R_{11} & R_{12} \\
+        R_{21} & R_{22}
+    \end{pmatrix}
+    \begin{pmatrix} 
+        J_1 \\ J_2 
+    \end{pmatrix}~.
+    \label{eq:1}
+\end{align}
+Thomson conjectures that
+\begin{align}
+    R_{12} = R_{21}~,
+    \label{eq:2}
+\end{align}
+which he found plausible, but could not derive from more fundamental principles.
+
+In his work, Onsager derives reciprocal relations of the kind~\eqref{eq:2}, or, to be precise, of the form
+\begin{align}
+    L_{12} = L_{21}~,
+    \label{eq:3}
+\end{align}
+from the principle of \emph{microscopic reversibility}, and further assumptions borrowed from the theory of fluctuations. To begin the discussion in I), he considers the case of heat transport along independent spatial directions $i/j$ in an isotropic crystal of low symmetry. The general case of different transport channels is left to be presented in~II), see Sec.~\ref{sec:2}. 
+
+His treatment in I) evolves around relating the conductances $L_{ij}$ to the average product of displacements from the equilibrium heat distribution, $\alpha_{i/j}$,
+\begin{align}
+    \left\langle \alpha_i (t) \alpha_j ( t + \tau ) \right\rangle
+    \propto L_{ij}
+    ~,
+    \label{eq:4}
+\end{align}
+and using the principle of microscopic reversibility, which states that a displacement of energy $\alpha_{\boldsymbol{i}}$ followed by a displacemnet $\alpha_{\boldsymbol{j}}$ a time~$\tau$ later must occur as often as a displacement $\alpha_{\boldsymbol{j}}$ followed by $\alpha_{\boldsymbol{i}}$,~i.\,e.,%\,\footnote{bold indices for visibility}
+\begin{align}
+    \left\langle \alpha_{\boldsymbol{i}} (t) \alpha_{\boldsymbol{j}} ( t + \tau ) \right\rangle
+    =
+    \left\langle \alpha_{\boldsymbol{j}} (t) \alpha_{\boldsymbol{i}} ( t + \tau ) \right\rangle
+    ~.
+    \label{eq:5}
+\end{align}
+
+\noindent Furthermore, he derives an extension to the ``\emph{principle of the least dissipation of energy}'' as first proposed by Lord Raleigh, according to which the \emph{rate of increase of the entropy} plays the role of a potential.
+
+\subsubsection*{Idea}
+Onsager denotes as
+\begin{align}
+    \bar{\alpha}_2 (\tau, \alpha_1')
+    \label{eq:1.6}
+\end{align}
+the average displacement $\alpha_2$ after $\alpha_1$ assumed the value $\alpha_1'$ a time $\tau$ earlier. Under the assumption that the displacements $\alpha_i$ are proportional to the temperature gradient $\partial_i T$ and thus proportional to the generalized force 
+$X_i = -1/T \, \partial_i T$, and the time derivative of the average displacement is proportional to the average current $\bar{J}_i$, we find
+\begin{align}
+    J_i &~=~ L_{ij} X_j ~\text{, and} \label{eq:1.7} \\
+    \dot{\bar \alpha}_i &~=~ V \bar{J}_i~. \label{eq:1.8}
+\end{align}
+For small time lags $\tau$,~\eqref{eq:1.6} can be expanded by means of \eqref{eq:1.8}:~\footnote{$\c$ denotes an insignificant constant, $-VC$ is in this case, with $V$ the volume of the system and $C$ a constant derived from Einstein's theory of fluctuations.}
+\begin{align}
+    \bar \alpha_2 (\tau, \alpha_1') 
+    \approx \left.\frac{\d \bar \alpha_2}{\d t}\right\vert_{\alpha_1'} \cdot \tau
+    = \c\, L_{21} \alpha_1' \tau~.
+    \label{eq:1.9}
+\end{align}
+The relation given in \eqref{eq:4} now follows by noting that
+\begin{align}
+    \langle \alpha_1 (t) \alpha_2 (t + \tau) \rangle 
+    = \langle \alpha_1' \bar \alpha_2 (\tau, \alpha_1') \rangle
+    \stackrel{\eqref{eq:1.9}}{=} \c\, L_{21} \mean{\alpha_1^2} \tau~.
+    \label{eq:1.10}
+\end{align}
+
+\newpage
+\section{Short Summary of II)}
+\label{sec:2}
+Onsager expands on I) by taking into account more than one type of transport processes, so that instead of
+$$
+\frac{\d \alpha_r}{\d t} = \dot \alpha_r \propto \frac{\partial S}{\d \alpha_r}~,
+$$
+one finds
+\begin{align}
+    \dot \alpha_r = \sum_s G_{r s} \frac{\partial \sigma}{\d \alpha_s}~,
+    \label{eq:6}
+\end{align}
+where
+\begin{align*}
+    \sigma (\alpha_1, \alpha_2, \ldots) &\equiv \text{ entropy } S \text{ as function of displacements } \alpha_i ~.
+\end{align*}
+Similar to I), he shows how \emph{microscopic reversibility} \eqref{eq:5} leads to reciprocal relations for $G$ of the kind
+\begin{align}
+    G_{rs} = G_{sr}~.
+    \label{eq:7}
+\end{align}
+
+\subsection*{\S\,3: The Regression of Fluctuations}
+In generalization of \eqref{eq:1.6}, Onsager defines 
+\begin{align}
+    \bar{\alpha}_i ( \tau; \alpha_1', \alpha_2', \ldots )
+    \label{eq:8}
+\end{align}
+as the average value of the displacement~$\alpha_i$, when the displacements $\alpha_1 \ldots \alpha_n$ assumed the values~$\alpha_1' \ldots \alpha_n'$ a time $\tau$ earlier. Most of the times, the configuration~$\alpha_1' \ldots \alpha_n'$ is observed when the system is in state $\Gamma_{1 \cdots n}'$,~i.\,e., the \emph{most probable state} defined by maximizing the entropy $S$. He concludes that one can relate
+$$ \bar{\alpha}_i ( \tau; \alpha_1', \alpha_2', \ldots ) 
+~\approx~ \bar{\alpha}_i ( \tau; \Gamma_{1 \cdots n}') ~, $$
+which is the measured evolution of the state $\Gamma'$ as measured in macroscopic experiments.
+
+\subsubsection*{Derivation}
+This so called ``regression hypothesis'' is a direct consequence of the \emph{fluctuation-dissipation theorem}~\footnote{H.\,B.~Callen, and T.\,A.~Welton, \emph{Phys. Rev.} \textbf{83}, 34 (1951)}. A possible direct derivation is given by Victor~S.~Batista~\footnote{\url{http://xbeams.chem.yale.edu/~batista/vaa/node56.html}}:
+
+We define the \emph{spontaneous microscopic fluctuation} of an observable $A$ as
+\begin{align}
+    \delta A(t) = A(t) - \langle A \rangle_0~,
+    \label{eq:9}
+\end{align}
+where $A(t)$ denotes the instantaneous value of $A$, and $\langle A \rangle_0$ is the equilibrium ensemble average defined by
+\begin{align}
+    \langle \bullet \rangle_0 = \frac{\text{Tr} \left\{ \bullet \, \rho_0 \right\}}{\mathcal{Z}_0}~,
+    \label{eq:10}
+\end{align}
+with $\rho = \text{e}^{-\beta H}$ and $\mathcal Z_0 = \text{Tr} \, \rho_0$~.
+We are interested in the evolution of $\langle A(t) \rangle$ in a non-equilibrium situation,~i.\,e., in the presence of a perturbation $H'$, so that~$H = H_0 + H'$. We model the perturbation $H'$ as a weak external field $f$ that couples to the dynamical variable $A$:
+\begin{align}
+    H' = - f A(0)~.
+    \label{eq:11}
+\end{align}
+Since the perturbation is supposed to be weak, we can make the following approximations to the density operator $\rho$ and partition sum $\mathcal{Z}$ for the interacting system $H$:
+\begin{align}
+    \rho &= \text{e}^{- \beta (H_0 + H')} \approx \text{e}^{- \beta H_0} (1 - \beta H')~,
+    \label{eq:12} \\
+    \implies \mathcal{Z} &= \text{Tr} \, \rho ~\approx~ \mathcal{Z}_0 ( 1 - \beta \langle H' \rangle_0 )~.
+    \label{eq:13}
+\end{align}
+It follows for $\langle A(t) \rangle$:
+\begin{align}
+    \langle A(t) \rangle 
+    &\approx \frac{ \cancel{\mathcal{Z}_0} \, \langle A(t) - \beta H' A(t) \rangle_0}{\cancel{\mathcal{Z}_0} (1 - \beta \langle H' \rangle_0)}~,
+    \label{eq:14}
+\end{align}
+and, by further approximating $ 1 /(1 - x) \approx 1 + x$,
+\begin{align}
+    \langle A(t) \rangle \approx \langle A \rangle_0 + \beta \langle H' \rangle_0 \langle A \rangle_0
+    - \beta \langle H' A(t) \rangle_0 + \mathcal{O} \left( (H')^2 \right)~,
+    \label{eq:15}
+\end{align}
+where the stationarity of the mean $\langle A(t) \rangle_0 = \langle A \rangle_0$ was used. Finally, by plugging in \eqref{eq:11}, we find
+\begin{align}
+    \langle A(t) \rangle - \langle A \rangle_0 
+    \approx f \beta \left( \langle A(0) A(t) \rangle_0 - \langle A \rangle_0^2 \right)~.
+    \label{eq:16}
+\end{align}
+We conclude by identifying the correlation function $C(t)$
+$$
+C(t) \equiv \langle A(t) A(0) \rangle_0 - \langle A \rangle_0^2 = \langle \delta A(t) \delta A(0) \rangle_0~,
+$$
+and normalizing with $C(0)$ to arrive at
+\begin{align}
+    \frac{\langle A(t) \rangle - \langle A \rangle_0}{\langle A(0) \rangle - \langle A \rangle_0}
+    =
+    \frac{\langle \delta A(t) \delta A(0) \rangle_0}{\langle \delta A(0) \delta A(0) \rangle_0}
+    = \frac{C (t) }{C(0) }~.
+    \label{eq:17}
+\end{align}
+Within the framework of the presented approximations, it is thus established that the \emph{regress of correlations of microscopic thermal fluctuations} is given by the \emph{macroscopic relaxation} of the observable towards thermal equilibrium and vice versa.
+\end{document}
